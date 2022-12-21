@@ -10,45 +10,9 @@ Created on Dec 21, 2022
 # Date: 2022-12-21
 
 
-# Misc
-import pandas as pd
-import json, requests, re
-from bs4 import BeautifulSoup
-from urllib.request import urlopen
-from urllib.parse import quote
-
 # Streamlit
 import streamlit as st
 import streamlit.components.v1 as comp
-
-# PDF
-from fpdf import FPDF, HTMLMixin
-from fpdf.html import HTML2FPDF
-from datetime import date
-import base64
-
-
-#--------------------------------------------------------------
-# PDF EXport Setup
-#--------------------------------------------------------------
-class HTMLMixinCustom(object):
-    def write_html(self, text, image_map=None):
-        "Parse HTML and convert it to PDF"
-        h2p = HTML2FPDF(self, image_map = image_map)
-        h2p.set_font('Arial',8)
-        h2p.feed(text)
-
-class myPDF(FPDF, HTMLMixinCustom):
-    pass
-
-pdf = myPDF('L','in',(11,17))
-pdf.set_auto_page_break(True, margin=.5)
-pdf.set_display_mode(zoom='fullwidth',layout='default')
-pdf.set_margins(.25,.25,.25)
-
-def create_download_link(val, filename):
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<br/> &nbsp; 💾 &nbsp; <a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf"><b>DOWNLOAD RESULTS</b> </a>'
 
 
 def make_iframe(trail_name):
