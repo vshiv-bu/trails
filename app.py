@@ -9,6 +9,8 @@ Created on Dec 21, 2022
 # Author: Vinod Shiv
 # Date: 2022-12-21
 
+# Pandas
+import pandas as pd
 
 # Streamlit
 import streamlit as st
@@ -35,23 +37,13 @@ if __name__ == "__main__":
     )
 
     # Add Title
-    st.title("Bay Area Paved Trails :mountain:")
-    st.markdown("##### Rainy Days?")
+    st.title("Partially Paved Trails :mountain:")
+    st.subheader("Kid friendly too!")
+    st.markdown("##### San Franscisco Bay Area | Rainy Days?")
     st.markdown ("***")
 
     ############################
 
-    trail_list = [
-        "east-shore-indian-cove-mcgregor-and-ten-hills-loop",
-        "ten-hills-east-shore-loop",
-        "lake-chabot-via-east-shore-trail",
-        "stanford-dish-loop-trail",
-        "bayview-and-meadowlark-trail-loop",
-        "devil-s-slide",
-        "sawyer-camp-trail",
-        "bay-trail-shoreline-lake"]
+    trail_list = pd.read_csv("./trails.csv", header=0)
    
-    for i in trail_list:    
-        make_iframe(i)
-
-    # Partially paved
+    trail_list.trail_name.apply(make_iframe)
